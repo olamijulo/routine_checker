@@ -3,9 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:routine_checker/custom_widgets/common_button.dart';
-import 'package:routine_checker/custom_widgets/routine_container.dart';
 import 'package:routine_checker/modules/add_routine_module/add_routine_screen.dart';
-import 'package:routine_checker/modules/add_routine_module/add_routine_view_model.dart';
 import 'package:routine_checker/modules/routine_module/routine_view_model.dart';
 
 class RoutineScreen extends StatefulWidget {
@@ -70,3 +68,4 @@ class _RoutineScreenState extends State<RoutineScreen> {
     );
   }
 }
+  

@@ -1,9 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:routine_checker/modules/add_routine_module/add_routine_model.dart';
+import 'package:routine_checker/modules/routine_module/routine_screen.dart';
 import 'package:routine_checker/modules/routine_module/routine_view_model.dart';
 
 class UpdateRoutineViewModel extends GetxController {
@@ -86,5 +89,6 @@ class UpdateRoutineViewModel extends GetxController {
     box.put(routineViewModel.itemIndex, addRoutineModelData);
     routineViewModel.getRoutine();
     update();
+    Get.to(()=>RoutineScreen());
   }
 }
