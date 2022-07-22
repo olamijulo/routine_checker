@@ -90,7 +90,7 @@ class RoutineViewModel extends GetxController {
 
 //this method updates the status of all items to expired in 15 minutes
   updateStatus() {
-    Timer(Duration(seconds: 3), () {
+    Timer(Duration(minutes: 15), () {
       var box = Hive.box('routines');
 
       for (int i = 0; i < box.keys.length; i++) {
