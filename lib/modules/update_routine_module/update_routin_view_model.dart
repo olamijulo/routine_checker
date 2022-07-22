@@ -1,19 +1,14 @@
-// ignore_for_file: avoid_function_literals_in_foreach_calls, prefer_const_constructors
-
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive/hive.dart';
+import 'package:get/state_manager.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jiffy/jiffy.dart';
 import 'package:routine_checker/modules/add_routine_module/add_routine_model.dart';
 import 'package:routine_checker/modules/routine_module/routine_view_model.dart';
 
-class AddRoutineViewModel extends GetxController {
+class UpdateRoutineViewModel extends GetxController {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-//this are the list of frequency
   List<Map<String, dynamic>> frequencyList = [
     {'time': 'hourly', 'isCheck': false},
     {'time': 'daily', 'isCheck': false},
@@ -67,32 +62,29 @@ class AddRoutineViewModel extends GetxController {
   String? title;
   String? description;
   String? frequency;
-  String? createDate;
   String? dueDate;
-  String? status = 'Active';
-
-  // this method add routins
-  addingRoutine() {
-    Get.put(RoutineViewModel());
-    RoutineViewModel routineViewModel = Get.find();
-    routineViewModel.getRoutine();
+  updateRoutin() {
     var box = Hive.box('routines');
 
+    Get.put(RoutineViewModel());
+    RoutineViewModel routineViewModel = Get.find();
+
     var addRoutineModel = AddRoutineModel(
-        title: title,
-        description: description,
-        frequency: frequency,
-        createDate: Jiffy().yMMMMEEEEdjm,
-        dueDate: dueDate,
-        status: status);
+        title:
+            title ?? box.values.elementAt(routineViewModel.itemIndex)['title'],
+        description: description ??
+            box.values.elementAt(routineViewModel.itemIndex)['description'],
+        frequency: frequency ??
+            box.values.elementAt(routineViewModel.itemIndex)['frequency'],
+        createDate:
+            box.values.elementAt(routineViewModel.itemIndex)['createDate'],
+        dueDate: dueDate ??
+            box.values.elementAt(routineViewModel.itemIndex)['dueDate'],
+        status: box.values.elementAt(routineViewModel.itemIndex)['status']);
 
     var addRoutineModelData = addRoutineModel.toJson();
-
-    box.add(addRoutineModelData);
-    log('routing data list ${box.values}');
+    box.put(routineViewModel.itemIndex, addRoutineModelData);
     routineViewModel.getRoutine();
-    routineViewModel.updateStatus();
     update();
   }
-
 }

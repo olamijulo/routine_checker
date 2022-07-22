@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:routine_checker/custom_widgets/common_button.dart';
 import 'package:routine_checker/modules/routine_module/routine_view_model.dart';
+import 'package:routine_checker/modules/update_routine_module/update_routine_screen.dart';
 
 class SingleRoutineScreen extends StatelessWidget {
   SingleRoutineScreen({Key? key}) : super(key: key);
@@ -129,7 +131,13 @@ class SingleRoutineScreen extends StatelessWidget {
                             ),
                           )
                         ],
-                      )
+                      ),
+                      SizedBox(height: 30.0,),
+                      CommonButton(
+                          onPressed: () {
+                            Get.to(() => UpdateRoutineScreen());
+                          },
+                          label: 'Add Routine')
                     ],
                   ),
                 );

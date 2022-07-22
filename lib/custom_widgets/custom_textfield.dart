@@ -6,7 +6,8 @@ class CustomTextField extends StatelessWidget {
   final int? maxLines;
   final Function(String)? onChanged;
   final String Function(String?)? validator;
-  CustomTextField({this.maxLines, this.onChanged, this.validator});
+  final String? initialValue;
+  CustomTextField({this.maxLines, this.onChanged, this.validator, this.initialValue});
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +16,7 @@ class CustomTextField extends StatelessWidget {
       maxLines: maxLines,
       onChanged: onChanged,
       validator: validator,
+      initialValue: initialValue,
       style: TextStyle(
           fontSize: 13.0, color: Colors.black54, fontWeight: FontWeight.bold),
       decoration: InputDecoration(

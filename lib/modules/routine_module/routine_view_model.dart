@@ -5,7 +5,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:routine_checker/custom_widgets/routine_container.dart';
 import 'package:routine_checker/modules/add_routine_module/add_routine_model.dart';
